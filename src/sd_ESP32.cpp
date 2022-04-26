@@ -87,7 +87,7 @@ bool ESP_SD::open(const char * path, bool readonly )
     }
     _pos = 0;
     _readonly = readonly;
-    return ((SdFile *)_sdfile)->open(&workDir, filename.c_str(), readonly?O_READ:(O_CREAT | O_APPEND | O_WRITE | O_TRUNC));
+    return ((SdFile *)_sdfile)->open(&workDir, filename.c_str(), readonly?F_O_READ:(F_O_CREAT | F_O_APPEND | F_O_WRITE | F_O_TRUNC));
 }
 
 uint32_t ESP_SD::size()
@@ -333,7 +333,7 @@ bool ESP_SD::openDir(String path)
     name = get_path_part(path,index);
     while ((name.length() > 0) && (name!="/")) {
         SdFile newDir;
-        if (!newDir.open(&root, name.c_str(), O_READ)) {
+        if (!newDir.open(&root, name.c_str(), F_O_READ)) {
             return false;
         }
         workDir=newDir;

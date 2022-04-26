@@ -1310,7 +1310,7 @@ bool COMMAND::execute_internal_command (int cmd, String cmd_params, level_authen
             espresponse->print (")");
             espresponse->print ("\n");
             wifi_config_t conf;
-            esp_wifi_get_config (ESP_IF_WIFI_AP, &conf);
+            esp_wifi_get_config (WIFI_IF_AP, &conf);
             espresponse->print ("SSID: ");
             espresponse->print ((const char*) conf.ap.ssid);
             espresponse->print ("\n");

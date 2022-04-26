@@ -1196,7 +1196,7 @@ bool COMMAND::execute_internal_command (int cmd, String cmd_params, level_authen
         espresponse->print ("Mhz");
         espresponse->print ("\n");
         espresponse->print ("CPU Temperature: ");
-        espresponse->print (String (temperatureRead(), 1).c_str());
+        // espresponse->print (String (temperatureRead(), 1).c_str());
         espresponse->print ("C");
         espresponse->print ("\n");
         espresponse->print ("Free memory: ");

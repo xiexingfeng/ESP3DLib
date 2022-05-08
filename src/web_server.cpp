@@ -885,7 +885,7 @@ void Web_Server::handleFileList ()
         String size = "";
         bool addtolist = true;
         //remove path from name
-        filename = filename.substring (path.length(), filename.length() );
+        // filename = filename.substring (path.length(), filename.length() );
         //check if file or subfile
         if (filename.indexOf ("/") > -1) {
             //Do not rely on "/." to define directory as SPIFFS upload won't create it but directly files

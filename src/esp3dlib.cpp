@@ -42,10 +42,10 @@ void ESP3DLibTaskfn( void * parameter )
 {
     Esp3DLibConfig::wait(DELAY_START_ESP3D);  // Yield to other tasks
     WiFiConfig::begin();
-    for(;;) {
-        WiFiConfig::handle();
-        Esp3DLibConfig::wait(0);  // Yield to other tasks
-    }
+    // for(;;) {
+    //     WiFiConfig::handle();
+    //     Esp3DLibConfig::wait(0);  // Yield to other tasks
+    // }
     vTaskDelete( NULL );
 }
 
@@ -59,16 +59,16 @@ Esp3DLib::Esp3DLib()
 //Begin which setup everything
 void Esp3DLib::init()
 {
-    // xTaskCreatePinnedToCore(
-    //     ESP3DLibTaskfn, /* Task function. */
-    //     "ESP3DLib Task", /* name of task. */
-    //     8192, /* Stack size of task */
-    //     NULL, /* parameter of the task */
-    //     ESP3DLIB_RUNNING_PRIORITY, /* priority of the task */
-    //     NULL, /* Task handle to keep track of created task */
-    //     ESP3DLIB_RUNNING_CORE    /* Core to run the task */
-    // );
-    WiFiConfig::begin();
+    xTaskCreatePinnedToCore(
+        ESP3DLibTaskfn, /* Task function. */
+        "ESP3DLib Task", /* name of task. */
+        8192, /* Stack size of task */
+        NULL, /* parameter of the task */
+        ESP3DLIB_RUNNING_PRIORITY, /* priority of the task */
+        NULL, /* Task handle to keep track of created task */
+        ESP3DLIB_RUNNING_CORE    /* Core to run the task */
+    );
+    // WiFiConfig::begin();
 }
 //Parse command
 bool Esp3DLib::parse(char * cmd)
